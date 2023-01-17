@@ -8,8 +8,8 @@ export const dataSourceOptions: DataSourceOptions = {
     username: process.env.DB_USERNAME,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    entities: ['.src/Models/Entities/*{.js,.ts}'],
-    migrations: ['./src/Migrations/*{.ts,.js}'],
+    entities: ['./dist/src/Entities/*{.js,.ts}'],
+    migrations: ['./dist/src/Migrations/*{.ts,.js}'],
     synchronize: false,
 }
 
