@@ -3,17 +3,21 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from 'Config/data-source';
+import { EpisodeController } from './Controllers/EpisodeController';
 import { MovieController } from './Controllers/MovieController';
 import { UserController } from './Controllers/UserController';
+import EpisodeDao from './Daos/EpisodeDao';
 import MovieDao from './Daos/MovieDao';
 import UserDao from './Daos/UserDao';
 import { Actor } from './Entities/Actor';
 import { Director } from './Entities/Director';
+import { Episode } from './Entities/Episode';
 import { Genre } from './Entities/Genre';
 import { Movie } from './Entities/Movie';
 import { Season } from './Entities/Season';
 import { Tv } from './Entities/Tv';
 import { User } from './Entities/User';
+import { EpisodeService } from './Services/EpisodeService';
 import { MovieService } from './Services/MovieService';
 import { UserService } from './Services/UserService';
 import { JwtStrategy } from './Strategy/JwtStrategy';
@@ -24,9 +28,9 @@ import { JwtStrategy } from './Strategy/JwtStrategy';
     secret: process.env.JWT_SECRET,
     signOptions: { expiresIn: '60s' },
   }),
-  TypeOrmModule.forFeature([User,Actor,Director,Genre, Movie, Season, Tv]),
+  TypeOrmModule.forFeature([User, Actor, Director, Genre, Movie, Season, Tv, Episode]),
   TypeOrmModule.forRoot(dataSourceOptions)],
-  controllers: [UserController, MovieController],
-  providers: [UserService, UserDao, JwtStrategy, MovieService, MovieDao],
+  controllers: [UserController, MovieController, EpisodeController],
+  providers: [UserService, UserDao, JwtStrategy, MovieService, MovieDao, EpisodeService, EpisodeDao],
 })
 export class AppModule { }

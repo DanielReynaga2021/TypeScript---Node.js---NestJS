@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { MovieFilterAndOrderParameter } from "src/Models/Parameter/MovieFilterAndOrderParameter";
 import MovieDao from "src/Daos/MovieDao";
 
 @Injectable()
