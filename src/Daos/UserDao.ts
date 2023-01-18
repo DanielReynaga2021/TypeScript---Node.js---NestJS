@@ -1,15 +1,15 @@
 import { HttpException, HttpStatus, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { UserEntity } from "src/Entities/UserEntity";
+import { User } from "src/Entities/User";
 import { Repository } from "typeorm";
 
 export default class UserDao {
     constructor(
-        @InjectRepository(UserEntity)
-        private _userEntityRepository: Repository<UserEntity>,
+        @InjectRepository(User)
+        private _userEntityRepository: Repository<User>,
     ) { }
 
-    async createUser(userEntity: UserEntity): Promise<UserEntity> {
+    async createUser(userEntity: User): Promise<User> {
         try{
             return await this._userEntityRepository.save(userEntity);
         } catch (error) {
@@ -18,16 +18,16 @@ export default class UserDao {
         
     }
 
-    async findUserByEmail(email: string): Promise<UserEntity> {
-        let user: UserEntity | null = await this._userEntityRepository.findOne({ where: { email: email } });
+    async findUserByEmail(email: string): Promise<User> {
+        let user: User | null = await this._userEntityRepository.findOne({ where: { email: email } });
         if (!user) {
             throw new HttpException("user not found", HttpStatus.BAD_REQUEST)
         }
         return user;
     }
 
-    async findUserByEmailAndId(email: string, id: number): Promise<UserEntity> {
-        let user: UserEntity | null = await this._userEntityRepository.findOne({
+    async findUserByEmailAndId(email: string, id: number): Promise<User> {
+        let user: User | null = await this._userEntityRepository.findOne({
             where: {
                 email: email,
                 id: id
