@@ -39,7 +39,7 @@ import { SeasonService } from './Services/SeasonService';
   imports: [ConfigModule.forRoot({ isGlobal: true }),
   JwtModule.register({
     secret: process.env.JWT_SECRET,
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '3600s' },
   }),
   TypeOrmModule.forFeature([User, Actor, Director, Genre, Movie, Season, Tv, Episode]),
   TypeOrmModule.forRoot(dataSourceOptions)],
