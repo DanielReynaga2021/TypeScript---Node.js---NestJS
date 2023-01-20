@@ -26,15 +26,15 @@ export default class UserDao {
         return user;
     }
 
-    async findUserByEmailAndId(email: string, id: number): Promise<User> {
-        let user: User | null = await this._userEntityRepository.findOne({
+    async findUserByEmailAndId(id: number, email: string, ): Promise<User> {
+        let user: User  = await this._userEntityRepository.findOne({
             where: {
                 email: email,
                 id: id
             }
         });
         if (!user) {
-            throw new HttpException("token not found", HttpStatus.BAD_REQUEST)
+            throw new HttpException("datebase not found", HttpStatus.BAD_REQUEST)
         }
         return user;
     }
