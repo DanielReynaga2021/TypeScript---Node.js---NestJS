@@ -1,3 +1,4 @@
+import { NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Director } from "src/Entities/Director";
 import { Episode } from "src/Entities/Episode";
@@ -28,5 +29,13 @@ export default class EpisodeDao {
             .where("e.numberEpisode = :numberEpisode", { numberEpisode: numberEpisode })
             .andWhere("t.name = :nameTvShow", { nameTvShow: nameTvShow })
         return qb.getRawOne();
+    }
+
+    async createEpisode(EpisodeEntity: Episode): Promise<Episode> {
+        try {
+            return await this._episodeRepository.save(EpisodeEntity);
+        } catch (error) {
+            throw new NotFoundException(error.sqlMessage, "database error");
+        }
     }
 }

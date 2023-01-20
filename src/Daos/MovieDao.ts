@@ -1,7 +1,7 @@
+import { NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Movie } from "src/Entities/Movie";
 import { Repository } from "typeorm";
-//import moment from 'moment';
 const moment = require('moment');
 
 export default class MovieDao {
@@ -9,6 +9,14 @@ export default class MovieDao {
         @InjectRepository(Movie)
         private _movieEntityRepository: Repository<Movie>,
     ) { }
+
+    async createMovie(MovieEntity: Movie): Promise<Movie> {
+        try {
+            return await this._movieEntityRepository.save(MovieEntity);
+        } catch (error) {
+            throw new NotFoundException(error.sqlMessage, "database error");
+        }
+    }
 
     async findMovie(filterAndOrder: Array<any>) {
         const qb = this._movieEntityRepository.createQueryBuilder("mv")
