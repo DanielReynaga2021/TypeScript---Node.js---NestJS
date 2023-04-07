@@ -35,6 +35,11 @@ Una vez clonado el repositorio, nos paramos dentro proyecto y ejecutamos los sig
 npm install
 ~~~~~~~~~~~~~~~~~~~
 
+Luego levantamos el proyecto ejecutando en consola
+~~~~~~~~~~~~~~~~~~~
+nest start
+~~~~~~~~~~~~~~~~~~~
+
 ## Endpoints
 
 - Nombre: register
