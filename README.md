@@ -27,7 +27,9 @@
 Repositorio destinado a la consulta de Peliculas, Programas de Tv, Actores y Directores.
 
 ## Requisitos
-- [Node.js](https://nodejs.org/)
+- [Node.js](https://nodejs.org/) Version > 16.0.0
+- [npm](https://nodejs.org/en/download/package-manager)
+- [Nest CLI](https://docs.nestjs.com/cli/overview)
 
 ## Instalacion
 Una vez clonado el repositorio, nos paramos dentro proyecto y ejecutamos los siguientes comandos en la consola
