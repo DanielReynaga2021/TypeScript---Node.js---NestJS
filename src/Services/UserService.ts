@@ -43,7 +43,7 @@ export class UserService {
 
   public createToken(id: number, email: string): string {
     let payload = { id: id, email: email };
-    let token: string = this._jwtService.sign(payload);
+    let token: string = this._jwtService.sign(payload, { secret: process.env.JWT_SECRET });
     return token;
   }
 
